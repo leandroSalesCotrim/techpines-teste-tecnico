@@ -10,25 +10,30 @@ class AlbumsController extends Controller
     // Exibir lista de álbuns
     public function index()
     {
-        error_log("Mensagem para o log3");
-        $albums = Albums::all();
-        return response()->json($albums);
+        try {
+            $albums = Albums::all();
+            return response()->json($albums);
+        } catch (\Exception $e) {
+            // Log do erro
+            error_log("Erro ao registrar álbum: " . $e->getMessage());
+            // Retorna uma resposta JSON com o erro
+            return response()->json(['success' => false, 'message' => 'Erro ao exibir faixas', 'error' => $e->getMessage()]);
+        }
     }
 
     // Valida e cria um novo álbum
     public function store(Request $request)
     {
         try {
-            error_log("Request recebida: " . json_encode($request->all(), JSON_PRETTY_PRINT));
 
             $request->validate([
                 'nome' => 'required|string|max:50',
                 'descricao' => 'nullable|string',
                 'artista' => 'required|string|max:50',
-                'data_lancamento' => 'required|date',
+                'data_lancamento' => 'nullable|date',
                 'genero' => 'required|string|max:255',
                 'capa_url' => 'nullable|string',
-                'num_faixas' => 'required|integer',
+                'qtd_faixas' => 'nullable|integer',
             ]);
 
             $albums = Albums::create($request->all());
@@ -44,47 +49,66 @@ class AlbumsController extends Controller
     // Exibir um álbum específico
     public function show($id)
     {
-        error_log("Mensagem para o log2");
-        $albums = Albums::find($id);
-        if (!$albums) {
-            return response()->json(['message' => 'albums não encontrado'], 404);
+        try {
+            $albums = Albums::find($id);
+            if (!$albums) {
+                return response()->json(['message' => 'albums não encontrado'], 404);
+            }
+            return response()->json($albums);
+        } catch (\Exception $e) {
+            // Log do erro
+            error_log("Erro ao registrar álbum: " . $e->getMessage());
+            // Retorna uma resposta JSON com o erro
+            return response()->json(['success' => false, 'message' => 'Erro ao exibir álbum', 'error' => $e->getMessage()]);
         }
-        return response()->json($albums);
     }
 
     // Atualizar um álbum existente
     public function update(Request $request, $id)
     {
-        error_log("Mensagem para o log4");
-        $albums = Albums::find($id);
-        if (!$albums) {
-            return response()->json(['message' => 'Álbum não encontrado'], 404);
+        try {
+            $albums = Albums::find($id);
+            if (!$albums) {
+                return response()->json(['message' => 'Álbum não encontrado'], 404);
+            }
+
+            $request->validate([
+                'nome' => 'required|string|max:50',
+                'descricao' => 'nullable|string',
+                'artista' => 'required|string|max:50',
+                'data_lancamento' => 'nullable|date',
+                'genero' => 'required|string|max:255',
+                'capa_url' => 'nullable|string',
+                'qtd_faixas' => 'nullable|integer',
+            ]);
+
+            $albums->update($request->all());
+            return response()->json($albums);
+        } catch (\Exception $e) {
+            // Log do erro
+            error_log("Erro ao registrar álbum: " . $e->getMessage());
+            // Retorna uma resposta JSON com o erro
+            return response()->json(['success' => false, 'message' => 'Erro ao atualizar álbum', 'error' => $e->getMessage()]);
         }
-
-        $request->validate([
-            'nome' => 'nullable|string|max:50',
-            'descricao' => 'nullable|string',
-            'artista' => 'nullable|string|max:50',
-            'data_lancamento' => 'nullable|date',
-            'genero' => 'nullable|string|max:255',
-            'capa_url' => 'nullable|string',
-            'num_faixas' => 'nullable|integer',
-        ]);
-
-        $albums->update($request->all());
-        return response()->json($albums);
     }
 
     // Excluir um álbum
     public function destroy($id)
     {
-        error_log("Mensagem para o log6");
-        $albums = Albums::find($id);
-        if (!$albums) {
-            return response()->json(['message' => 'Álbum não encontrado'], 404);
-        }
+        try {
+            error_log("Id recebida no delete: ") + $id;
+            $albums = Albums::find($id);
+            if (!$albums) {
+                return response()->json(['message' => 'Álbum não encontrado'], 404);
+            }
 
-        $albums->delete();
-        return response()->json(['message' => 'Álbum excluído com sucesso']);
+            $albums->delete();
+            return response()->json(['message' => 'Álbum excluído com sucesso']);
+        } catch (\Exception $e) {
+            // Log do erro
+            error_log("Erro ao registrar álbum: " . $e->getMessage());
+            // Retorna uma resposta JSON com o erro
+            return response()->json(['success' => false, 'message' => 'Erro ao deletar álbum', 'error' => $e->getMessage()]);
+        }
     }
 }

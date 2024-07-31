@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Faixa extends Model
+class Faixas extends Model
 {
     use HasFactory;
 
@@ -13,8 +13,9 @@ class Faixa extends Model
         'nome',
         'descricao',
         'artista',
-        'numFaixa',
-        'fkalbums',
+        'num_faixa',
+        'duracao',
+        'albums_id',
         'timestamps',
     ];
 

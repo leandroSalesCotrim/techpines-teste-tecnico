@@ -1,6 +1,6 @@
 // src/components/Addalbums.js
 import React, { useState } from 'react';
-import { createalbums } from '../services/api';
+import { createAlbums } from '../services/api';
 
 const AddAlbums = () => {
     const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ const AddAlbums = () => {
         data_lancamento: '',
         genero: '',
         capa_url: '',
-        num_faixas: 0,
+        qtd_faixas: 0,
     });
 
     const handleChange = (e) => {
@@ -21,8 +21,8 @@ const AddAlbums = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await createalbums(formData);
-            alert('Álbum adicionado com sucesso!');
+            await createAlbums(formData);
+            window.location.reload();
         } catch (error) {
             console.error('Error adding albums:', error);
         }
@@ -53,7 +53,7 @@ const AddAlbums = () => {
             </label>
             <label>
                 Numero de faixas:
-                <input type="number" name="num_faixas" value={formData.num_faixas} onChange={handleChange} />
+                <input type="number" name="qtd_faixas" value={formData.qtd_faixas} onChange={handleChange} />
             </label>
             {/* Adicione outros campos aqui */}
             <button type="submit">Adicionar Álbum</button>

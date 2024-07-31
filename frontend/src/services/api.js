@@ -8,18 +8,32 @@ export const getAlbums = () => {
     return axios.get(`${API_URL}/albums`);
 };
 
-export const getalbumsById = (id) => {
+export const getAlbumsById = (id) => {
     return axios.get(`${API_URL}/albums/${id}`);
 };
 
-export const createalbums = (albumsData) => {
+export const createAlbums = (albumsData) => {
     return axios.post(`${API_URL}/albums`, albumsData);
 };
 
-export const updatealbums = (id, albumsData) => {
+export const updateAlbums = (id, albumsData) => {
     return axios.put(`${API_URL}/albums/${id}`, albumsData);
 };
 
-export const deletealbums = (id) => {
+export const deleteAlbums = (id) => {
     return axios.delete(`${API_URL}/albums/${id}`);
+};
+
+
+export const createFaixa = ( faixaData) => {
+    return axios.post(`${API_URL}/faixas`, faixaData);
+};
+export const getFaixas = () => {
+    return axios.get(`${API_URL}/faixas`);
+};
+export const updateFaixas = (id, faixaData) => {
+    return axios.put(`${API_URL}/faixas/${id}`, faixaData);
+};
+export const deleteFaixas = (id) => {
+    return axios.delete(`${API_URL}/faixas/${id}`);
 };

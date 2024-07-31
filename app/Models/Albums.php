@@ -13,15 +13,15 @@ class Albums extends Model
         'nome',
         'descricao',
         'artista',
-        'dataLancamento',
+        'data_lancamento',
         'genero',
-        'capaUrl',
-        'numFaixas',
+        'capa_url',
+        'qtd_faixas',
         'timestamps',
     ];
 
     public function faixas()
     {
-        return $this->hasMany(Faixa::class);
+        return $this->hasMany(Faixas::class);
     }
 }
