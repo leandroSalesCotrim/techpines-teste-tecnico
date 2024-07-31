@@ -1,0 +1,143 @@
+.album-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: #1f1f1f; /* Cor de fundo da lista */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para destacar a lista */
+    position: relative; /* Adiciona contexto de posicionamento para o botão */
+}
+
+.album-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Alinha os itens no início */
+    background: #282828;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    color: #e1e1e1;
+    position: relative; /* Necessário para o posicionamento do formulário de edição */
+    justify-content: space-between; /* Espaça os itens entre a imagem, informações e ações */
+}
+
+
+.album-item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    border: 2px solid #1db954; /* Borda da capa do álbum */
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.album-info {
+    display: flex;
+    flex-direction: row; /* Para exibir os itens em coluna */
+    justify-content: space-around; /* Distribui o espaço ao redor dos itens */
+    flex: 1; /* Permite que o contêiner ocupe o espaço restante */
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.album-info h2 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.album-info p {
+    margin: 5px 0;
+    color: #b3b3b3; /* Cor do texto adicional */
+}
+
+.album-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-end; /* Alinha os botões no fim do contêiner */
+    align-items: flex-end; /* Alinha os botões à direita do contêiner */
+}
+
+
+.album-actions button {
+    background: #1db954; /* Cor do botão */
+    width: 100%;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.album-actions button:hover {
+    background: #1ed760; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilo para os campos de edição */
+.edit-form {
+    position: absolute; /* Posiciona o formulário acima do item */
+    top: 100%; /* Coloca o formulário abaixo do item do álbum */
+    left: 0;
+    right: 0;
+    margin-top: 10px;
+    padding: 10px;
+    width: 60%;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1; /* Garante que o formulário esteja acima dos outros conteúdos */
+    justify-self: center;
+    display: flex;
+}
+
+.edit-form input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.edit-form button {
+    background: #1db954;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 20%;
+    margin: 0 auto;
+}
+
+.edit-form button:hover {
+    background: #1ed760;
+}
+
+/* Estilo para o botão de adicionar álbum no canto direito */
+.add-album-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1db954; /* Cor de fundo do botão */
+    color: #ffffff; /* Cor do texto do botão */
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Garantir que o botão fique acima de outros elementos */
+}
+
+.add-album-button:hover {
+    background: #1ed760; /* Cor de fundo ao passar o mouse */
+}

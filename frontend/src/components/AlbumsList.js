@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getAlbums, deleteAlbums, createFaixa, updateAlbums } from '../services/api';
 import AlbumModal from './AlbumModal';
-import ConfirmarModal from './ConfirmarModal'; // Importar o ConfirmarModal
-import './AlbumModal.css'; // Certifique-se de importar o CSS da modal
+import ConfirmarModal from './ConfirmarModal';
+import AddAlbums from './AddAlbums';
+import './AlbumsList.css';
 
 const AlbumsList = () => {
     const [albums, setAlbums] = useState([]);
@@ -20,6 +21,7 @@ const AlbumsList = () => {
     });
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [albumToDelete, setAlbumToDelete] = useState(null);
+    const [showAddAlbums, setShowAddAlbums] = useState(false);
 
     const genericImageUrl = 'https://cdn-icons-png.flaticon.com/512/7163/7163433.png';
 
@@ -72,19 +74,17 @@ const AlbumsList = () => {
     const handleCreateFaixa = async (albumId, faixa) => {
         try {
             await createFaixa(faixa);
-            
-            // Atualize a lista de álbuns para refletir a nova faixa
+
             const updatedAlbums = albums.map(album => {
                 if (album.id === albumId) {
-                    // Garantir que o atributo faixa é um array
                     const updatedFaixa = album.faixa ? [...album.faixa, faixa] : [faixa];
                     return { ...album, faixa: updatedFaixa };
                 }
                 return album;
             });
-    
+
             setAlbums(updatedAlbums);
-            setSelectedAlbum(null); // Feche o modal após adicionar a faixa
+            setSelectedAlbum(null);
         } catch (error) {
             console.error('Error adding faixa:', error);
         }
@@ -130,39 +130,60 @@ const AlbumsList = () => {
     );
 
     return (
-        <div>
+        <div className="album-list">
             <h1>Álbuns</h1>
-            <input 
-                type="text" 
-                placeholder="Pesquisar álbuns..." 
-                value={searchTerm} 
-                onChange={(e) => setSearchTerm(e.target.value)} 
-            />
-            <ul>
-                {filteredAlbums.map(album => (
-                    <li key={album.id}>
-                        {editingAlbumId === album.id ? (
-                            <div>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Pesquisar álbuns..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
+            {filteredAlbums.map(album => (
+                <div key={album.id} className="album-item">
+                    <img src={album.capa_url || genericImageUrl} alt={album.nome} />
+                    <div className="album-info">
+                        <h2>{album.nome}</h2>
+                        <p>{album.artista}</p>
+                        <p>{album.descricao}</p>
+                        <p>{album.data_lancamento}</p>
+                        <p>{album.genero}</p>
+                        <p>{album.qtd_faixas} faixas</p>
+                    </div>
+                    <div className="album-actions">
+                        <button onClick={() => handleOpenModal(album)}>Ver Faixas</button>
+                        <button onClick={() => handleEditClick(album)}>Editar</button>
+                        <button onClick={() => handleDeleteAlbum(album)}>Excluir</button>
+                    </div>
+                    {editingAlbumId === album.id && (
+                        <div className="edit-form">
+                            <div className="input-row">
                                 <input
                                     type="text"
                                     name="nome"
                                     value={editForm.nome}
                                     onChange={handleEditChange}
+                                    placeholder="Nome"
                                 />
                                 <input
                                     type="text"
                                     name="artista"
                                     value={editForm.artista}
                                     onChange={handleEditChange}
+                                    placeholder="Artista"
                                 />
                                 <input
                                     type="text"
                                     name="descricao"
                                     value={editForm.descricao}
                                     onChange={handleEditChange}
+                                    placeholder="Descrição"
                                 />
+                            </div>
+                            <div className="input-row">
                                 <input
-                                    type="text"
+                                    type="date"
                                     name="data_lancamento"
                                     value={editForm.data_lancamento}
                                     onChange={handleEditChange}
@@ -172,53 +193,47 @@ const AlbumsList = () => {
                                     name="genero"
                                     value={editForm.genero}
                                     onChange={handleEditChange}
+                                    placeholder="Gênero"
                                 />
                                 <input
                                     type="number"
                                     name="qtd_faixas"
                                     value={editForm.qtd_faixas}
                                     onChange={handleEditChange}
+                                    placeholder="Qtd. Faixas"
                                 />
                                 <input
                                     type="text"
                                     name="capa_url"
                                     value={editForm.capa_url}
                                     onChange={handleEditChange}
-                                    placeholder="URL da capa do álbum"
+                                    placeholder="URL da Capa"
                                 />
-                                <button onClick={() => handleEditSubmit(album.id)}>Salvar</button>
-                                <button onClick={handleCancelEdit}>Cancelar</button>
                             </div>
-                        ) : (
-                            <div>
-                                <img
-                                    src={album.capa_url || genericImageUrl}
-                                    alt={`Capa do álbum ${album.nome}`}
-                                    style={{ width: '100px', height: '100px' }}
-                                />
-                                {album.nome} - {album.artista} - {album.descricao} - {album.data_lancamento} - {album.genero} - {album.qtd_faixas} 
-                                <button onClick={() => handleOpenModal(album)}>Ver Detalhes</button>
-                                <button onClick={() => handleEditClick(album)}>Editar</button>
-                                <button onClick={() => handleDeleteAlbum(album)}>Excluir</button>
-                            </div>
-                        )}
-                    </li>
-                ))}
-            </ul>
-
+                                
+                            <button onClick={() => handleEditSubmit(album.id)}>Salvar</button>
+                            <button onClick={handleCancelEdit}>Cancelar</button>
+                        </div>
+                    )}
+                </div>
+            ))}
             {selectedAlbum && (
                 <AlbumModal
                     album={selectedAlbum}
                     onClose={handleCloseModal}
-                    onAddFaixa={handleCreateFaixa}
+                    onCreateFaixa={handleCreateFaixa}
                 />
             )}
-
-            <ConfirmarModal
-                show={showConfirmModal}
-                onConfirm={confirmDeleteAlbum}
-                onCancel={cancelDeleteAlbum}
-            />
+            {showConfirmModal && (
+                <ConfirmarModal
+                    onConfirm={confirmDeleteAlbum}
+                    onCancel={cancelDeleteAlbum}
+                />
+            )}
+            <button className="add-album-button" onClick={() => setShowAddAlbums(true)}>
+                +
+            </button>
+            {showAddAlbums && <AddAlbums onClose={() => setShowAddAlbums(false)} />}
         </div>
     );
 };

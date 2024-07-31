@@ -1,0 +1,114 @@
+/* src/components/FaixaList.css */
+
+.faixa-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.faixa-header .album-info{
+    justify-content: flex-start;
+}
+.album-header {
+    display: flex;
+}
+
+.album-info {
+    flex: 1;
+}
+
+.album-info h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.album-info p {
+    margin: 5px 0;
+    color: #b3b3b3;
+}
+
+.faixas-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 10px;
+    background: #1d1d1d;
+    margin-top: 20px;
+}
+
+.faixas-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.faixas-list li {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    color: #e1e1e1;
+}
+.faixas-list div{
+    display: flex;
+    justify-content: space-around;
+}
+.faixas-list span{
+   margin: auto;
+}
+.faixas-list button{
+    margin: auto;
+    align-self: flex-end;
+ }
+.faixas-list .faixas-btns{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.faixas-list .faixas-btns button{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+.faixas-list li:last-child {
+    border-bottom: none;
+}
+
+.album-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.album-info input {
+    flex-grow: 1;
+    width: 10%;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.add-faixa-button {
+    background-color: #1db954; /* Cor verde semelhante ao botão do Spotify */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 10px;
+    align-self: flex-end; /* Garante que o botão esteja ao final do container */
+}
+
+.add-faixa-button:hover {
+    background-color: #1ed760; /* Cor verde um pouco mais clara para o hover */
+}
+

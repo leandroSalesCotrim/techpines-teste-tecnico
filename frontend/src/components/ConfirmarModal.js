@@ -1,20 +1,24 @@
 import React from 'react';
 import './ConfirmarModal.css';
 
-const ConfirmarModal = ({ show, onConfirm, onCancel }) => {
-    if (!show) {
-        return null;
-    }
+const ConfirmarModal = ({  onConfirm, onCancel }) => {
+
 
     return (
-        <div className="confirm-modal">
-            <div className="confirm-modal-content">
-                <p>Tem certeza que deseja excluir esta faixa?</p>
-                <button onClick={onConfirm}>Confirmar</button>
-                <button onClick={onCancel}>Cancelar</button>
+        <div className="confirmar-modal">
+            <div className="confirmar-modal-content">
+                <h2>Confirmar Exclusão</h2>
+                <p>Tem certeza de que deseja excluir esta faixa?</p>
+                <div className='confirmar-modal-buttons'>
+                    <button onClick={onConfirm}>Sim</button>
+                    <button onClick={onCancel}>Não</button>
+                </div>
+
             </div>
         </div>
     );
 };
 
 export default ConfirmarModal;
+
+

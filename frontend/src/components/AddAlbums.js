@@ -1,8 +1,8 @@
-// src/components/Addalbums.js
 import React, { useState } from 'react';
 import { createAlbums } from '../services/api';
+import './AddAlbums.css';
 
-const AddAlbums = () => {
+const AddAlbums = ({ onClose }) => {
     const [formData, setFormData] = useState({
         nome: '',
         descricao: '',
@@ -22,6 +22,7 @@ const AddAlbums = () => {
         e.preventDefault();
         try {
             await createAlbums(formData);
+            onClose(); // Fechar a modal após o envio
             window.location.reload();
         } catch (error) {
             console.error('Error adding albums:', error);
@@ -29,35 +30,43 @@ const AddAlbums = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Adicionar Álbum</h1>
-            <label>
-                Nome:
-                <input type="text" name="nome" value={formData.nome} onChange={handleChange} />
-            </label>
-            <label>
-                Descricao:
-                <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} />
-            </label>
-            <label>
-                Artista:
-                <input type="text" name="artista" value={formData.artista} onChange={handleChange} />
-            </label>
-            <label>
-                Data do lancamento:
-                <input type="date" name="data_lancamento" value={formData.data_lancamento} onChange={handleChange} />
-            </label>
-            <label>
-                Genero:
-                <input type="text" name="genero" value={formData.genero} onChange={handleChange} />
-            </label>
-            <label>
-                Numero de faixas:
-                <input type="number" name="qtd_faixas" value={formData.qtd_faixas} onChange={handleChange} />
-            </label>
-            {/* Adicione outros campos aqui */}
-            <button type="submit">Adicionar Álbum</button>
-        </form>
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <form onSubmit={handleSubmit}>
+                    <h1>Adicionar Álbum</h1>
+                    <label>
+                        Nome:
+                        <input type="text" name="nome" value={formData.nome} onChange={handleChange} />
+                    </label>
+                    <label>
+                        Descricao:
+                        <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} />
+                    </label>
+                    <label>
+                        Artista:
+                        <input type="text" name="artista" value={formData.artista} onChange={handleChange} />
+                    </label>
+                    <label>
+                        Data do lançamento:
+                        <input type="date" name="data_lancamento" value={formData.data_lancamento} onChange={handleChange} />
+                    </label>
+                    <label>
+                        Genero:
+                        <input type="text" name="genero" value={formData.genero} onChange={handleChange} />
+                    </label>
+                    <label>
+                        Número de faixas:
+                        <input type="number" name="qtd_faixas" value={formData.qtd_faixas} onChange={handleChange} />
+                    </label>
+                    <label>
+                        URL da capa:
+                        <input type="text" name="capa_url" value={formData.capa_url} onChange={handleChange} />
+                    </label>
+                    <button type="submit">Adicionar Álbum</button>
+                    <button type="button" onClick={onClose}>Fechar</button>
+                </form>
+            </div>
+        </div>
     );
 };
 

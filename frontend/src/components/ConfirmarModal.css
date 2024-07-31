@@ -1,4 +1,4 @@
-.confirm-modal {
+.confirmar-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,13 +11,19 @@
     z-index: 9999; /* Certifique-se de que este valor seja maior do que o z-index da modal existente */
 }
 
-.confirm-modal-content {
+.confirmar-modal-content {
+    display: flex;
+    flex-direction: column;
     background-color: white;
+    color: #1d1d1d;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
 }
+.confirmar-modal-buttons{
+}
 
-.confirm-modal-content button {
+.confirmar-modal-content button {
     margin: 5px;
+    margin:auto;
 }

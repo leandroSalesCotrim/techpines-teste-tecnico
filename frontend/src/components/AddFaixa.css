@@ -1,0 +1,53 @@
+/* src/components/AddFaixa.css */
+
+/* Estilo geral do formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #282828; /* Cor de fundo do formulário */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Estilo para o título do formulário */
+h3 {
+    color: #e1e1e1; /* Cor do texto do título */
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+/* Estilo para os rótulos dos campos */
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #b3b3b3; /* Cor dos rótulos dos campos */
+}
+
+/* Estilo para os campos de entrada */
+input {
+    background: #1d1d1d; /* Cor de fundo dos campos de entrada */
+    border: 1px solid #333; /* Borda dos campos de entrada */
+    color: #e1e1e1; /* Cor do texto dos campos de entrada */
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Estilo para o botão de envio */
+button {
+    background: #1db954; /* Cor de fundo do botão */
+    border: none;
+    color: #ffffff; /* Cor do texto do botão */
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Estilo para o botão de envio ao passar o mouse */
+button:hover {
+    background: #1ed760; /* Cor de fundo do botão ao passar o mouse */
+}

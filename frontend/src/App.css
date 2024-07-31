@@ -1,38 +1,78 @@
+/* src/App.css */
+
+/* Define o fundo global da página */
+body {
+  background-color: #121212; /* Cor de fundo escura */
+  color: #e1e1e1; /* Cor do texto padrão */
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* Fonte moderna */
+  margin: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+/* Estilo para o botão de adicionar álbum no canto direito */
+.add-album-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1db954; /* Cor de fundo do botão */
+  color: #ffffff; /* Cor do texto do botão */
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Garantir que o botão fique acima de outros elementos */
+}
+
+/* Estilo para a aplicação */
 .App {
   text-align: center;
 }
 
+/* Logo da aplicação (se aplicável) */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
+/* Animação de logo, se necessário */
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+}
 }
 
+/* Cabeçalho da aplicação */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #282c34; /* Cor de fundo do cabeçalho */
+  min-height: 100vh; /* Garante que o cabeçalho ocupe toda a altura da página */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #e1e1e1; /* Cor do texto do cabeçalho */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra sutil para destacar o cabeçalho */
 }
 
+/* Links na aplicação */
 .App-link {
-  color: #61dafb;
+  color: #1db954; /* Cor dos links, semelhante ao verde do Spotify */
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+from {
+  transform: rotate(0deg);
+}
+to {
+  transform: rotate(360deg);
+}
 }
