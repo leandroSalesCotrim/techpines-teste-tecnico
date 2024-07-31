@@ -84,7 +84,13 @@ $ npm start
 <h1>Telas do projeto</h1>
 
 
-
-![p1 2](https://github.com/leandroSalesCotrim/Fidelity-Spider/assets/56699403/41c83505-0b68-4e02-bad9-ac09dd0cade7)
-
+![p1](https://github.com/user-attachments/assets/9d389864-bcf3-4f5a-91eb-f88befd3e8c1)
+![p2](https://github.com/user-attachments/assets/e093abd6-4cb7-4049-b314-1d6c1bfc77dd)
+![p3](https://github.com/user-attachments/assets/3ef2f8c9-855a-4deb-94df-cfe879d52a65)
+![p4](https://github.com/user-attachments/assets/bddc8f05-e58e-4d55-9eae-c2afa52e2ee2)
+![p5](https://github.com/user-attachments/assets/be83465b-2744-4dd9-a7a9-1cfc6416b66e)
+![p6](https://github.com/user-attachments/assets/989af8f1-5a7a-493a-9a56-99e5e078e2f3)
+![p7](https://github.com/user-attachments/assets/21f81d3b-f4a0-418c-81ff-222de93ec525)
+![p8](https://github.com/user-attachments/assets/1c630c92-c467-4b6d-addd-c48d6ff4e3be)
+![p9](https://github.com/user-attachments/assets/d07b9597-0fa3-4167-9b81-d34c858f7be5)
 
