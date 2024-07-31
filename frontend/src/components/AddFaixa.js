@@ -28,13 +28,14 @@ const AddFaixa = ({ albumId }) => {
                 num_faixa: '',
                 duracao: '',
             });
+            window.location.reload();
         } catch (error) {
             console.error('Error adding faixa:', error);
         }
     };
 
     return (
-        <form class="form-faixa"onSubmit={handleSubmit}>
+        <form class="form-faixa" onSubmit={handleSubmit}>
             <h3>Adicionar Faixa</h3>
             <label>
                 Nome:
@@ -44,6 +45,7 @@ const AddFaixa = ({ albumId }) => {
                 Descrição:
                 <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} />
             </label>
+                Artista:
             <label>
                 <input type="text" name="artista" value={formData.artista} onChange={handleChange} required />
             </label>
