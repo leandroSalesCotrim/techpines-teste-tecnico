@@ -64,6 +64,11 @@ DB_USERNAME=SEU_USUARIO_DO_BANCO
 DB_PASSWORD=SUA_SENHA_DO_BANCO
 ```
 
+4.2) Execute as migrations para que as tabelas sejam criadas corretamente no banco
+```bash
+php artisan migrate
+```
+
 5) Com um terminal aberto no raiz do projeto inicie o backend Laravel
 
 ```bash
